@@ -9,3 +9,9 @@
 .red {
   background-color:red;
 }
+/*
+.main-row {
+  display:flex;
+  flex-wrap: wrap;
+  flex-basis: auto;
+} */
