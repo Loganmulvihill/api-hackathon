@@ -9,9 +9,32 @@
 .red {
   background-color:red;
 }
-/*
-.main-row {
+
+body {
+  background-color:#7DFFFC;
+}
+
+#map {
+  height:500px;
+  width:500px;
+  background-color:blue;
+}
+
+.card-columns {
+  height:100vh;
+/* overflow-y:scroll; */
+ overflow-x:scroll;
+}
+
+.map {
+  height:100vh;
+}
+
+.align-center {
   display:flex;
-  flex-wrap: wrap;
-  flex-basis: auto;
-} */
+  align-items: center;
+}
+
+.searchForm {
+  margin-top:10px;
+}
