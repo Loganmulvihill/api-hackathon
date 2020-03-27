@@ -6,9 +6,7 @@ $.ajax({
   url: "https://app.ticketmaster.com/discovery/v2/events.json?dmaId=381&apikey=ULaPAoWQUZyaEgtZCF9E39G7bEf00flf",
   async: true,
   dataType: "json",
-  success: function (json) {
-    showEvents(json);
-  },
+  success: showEvents,
   error: function (xhr, status, err) {
   }
 });
@@ -52,7 +50,7 @@ function updateSearch(json) {
 
     var cardDeck = document.querySelector('.card-columns');
     var card = document.createElement('div');
-    card.classList.add("card")
+    card.classList.add("card, col-4")
 
     var image = document.createElement('img');
     image.classList.add("card-img-top");
