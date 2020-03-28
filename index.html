@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <title>Ticket Master Event App</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <div class="container col-11">
+    <header class="row">
+      <h1 class="col ">Ticket Master App<h1>
+        <form class="form-inline md-form mr-auto mb-4 searchForm">
+          <input id="searchBar" name="search" class="form-control mr-sm-2 " type="text"
+            placeholder="Search for events" aria-label="Search">
+          <button id="searchButton" class="btn aqua-gradient btn-rounded btn-sm my-0" type="button"
+            onclick="returnSearch()">Search</button>
+        </form>
+    </header>
+    <div class="row">
+      <h2 class="col"><span class="badge badge-secondary">All Tickets are free due to Corona Virus</span></h2>
+    </div>
+  </div>
+
+  <div class="row main-row">
+    <div class="card-columns col-8">
+
+    </div>
+
+    <div id="map" class="col-4 map"></div>
+  </div>
+
+
+
+  <div class="row">
+    <footer></footer>
+  </div>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+  <script src="main.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCapjt7RzgfQfQy3eR4aDj4HdvZNX7GjZs">
+  </script>
+</body>
+
+</html>
