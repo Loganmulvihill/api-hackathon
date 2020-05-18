@@ -14,29 +14,12 @@ body {
   background-color:#7DFFFC;
 }
 
-/* #map {
-  height:500px;
-  width:500px;
-  background-color:blue;
-} */
-
 .card-columns {
   height:80vh;
   width:33%;
   display:flex;
   flex-wrap:wrap;
-/* overflow-y:scroll;
-overflow-x:hidden;
-position:relative; */
 }
-
-/* .card {
-  position:absolute;
-} */
-
-/* .main-row {
-  overflow:scroll;
-} */
 
 .map {
   height:100vh;
@@ -50,12 +33,6 @@ position:relative; */
 .searchForm {
   margin-top:10px;
 }
-
-
-/* .main-row {
-overflow-y:scroll;
- overflow-x:hidden;
-} */
 
 .card {
   width:33%;
