@@ -1,19 +1,28 @@
-# C220-Hackathon-2
 
-For this Hackathon, you will be combining multiple public APIs of your choosing in order to create a web application that uses their combined data to create something new. The application is yours to design, but your idea must be approved by an instructor before you can move forward with building the application.
+# Eventster
+> - Maintained by: `Logan Mulvihill`
 
-### Requirements
-- Combine **at least** 2 public APIs via AJAX requests and present their combined information in a web application of your design.
-- Must be issue-managed via [Meistertask](https://www.meistertask.com/) or an equivalent Kanban board.
-- Application idea **MUST** be approved by an instructor before you begin coding your project.
+## Description
+A desktop application for users who want to find events near them.
 
+## Live Demo
+Coming Soon!
 
-### Approved API List
+## Technologies Used
+ - HTML
+ - CSS
+ - JavaScript
+ - JQuery
+ - ajax
+ - Bootstrap
+ - Ticketmaster API
+   -- https://developer.ticketmaster.com/products-and-docs/apis/getting-started/
+ - Google Maps JavaScript API
+  -- https://developers.google.com/maps/documentation/javascript/tutorial?utm_source=google&utm_medium=cpc&utm_campaign=FY18-Q2-global-demandgen-paidsearchonnetworkhouseads-cs-maps_contactsal_saf&utm_content=text-ad-none-none-DEV_c-CRE_359194145412-ADGP_Hybrid+%7C+AW+SEM+%7C+BKWS+~+Google+Maps+Javascript+API-KWID_43700045479855436-kwd-341556983684-userloc_9031302&utm_term=KW_%2Bmaps%20%2Bjavascript%20%2Bapi-ST_%2Bmaps+%2Bjavascript+%2Bapi&gclid=CjwKCAjw5Ij2BRBdEiwA0Frc9fBedW1vMSixoaga6ztvWeaUvTmWpVhuWrqJlRUVrm1mPzLwLsKMVhoCD9QQAvD_BwE
 
-Found [**here**](https://docs.google.com/document/d/10CMIYVWv36gophaq_3DldBoAT4w6g4xL9xEMnEu-z5o/edit?usp=sharing)
+## Features
+1. User inputs zip code or city.
+2. Events for that zip code are dynamically created with the data received from the Ticketmaster API.
+3. Map is created containing latitude/longitude markers using Google Maps Javascript API.
 
-### ProgrammableWeb API Directory
-
-Found [**here**](https://www.programmableweb.com/apis/directory)
-
-**NOTE:** Any APIs found through this link not on the approved API list above must be approved by an instructor to be used. In order to be approved, you must be able to provide proof of a successful AJAX call in the browser **WITHOUT** using VSCode's Live Server.
+## Preview
