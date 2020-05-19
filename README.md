@@ -1,6 +1,6 @@
 
 # Eventster
-> - Maintained by: `Logan Mulvihill`
+> - Maintained by: `loganmulvihill`
 
 ## Description
 A desktop application for users who want to find events near them.
