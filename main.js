@@ -31,7 +31,7 @@ function returnSearch() {
 }
 
 function updateSearch(json) {
-  var cardDeck = document.querySelector('.card-columns');
+  var cardDeck = document.querySelector('.scrolling-wrapper');
   cardDeck.innerHTML = "";
   var latlng = { lat: 33.6846, lng: -117.8265 };
   var map = new google.maps.Map(document.getElementById('map'), {
@@ -40,9 +40,9 @@ function updateSearch(json) {
   });
 
   for (var i = 0; i < json.page.size; i++) {
-    var cardDeck = document.querySelector('.card-columns');
+    var cardDeck = document.querySelector('.scrolling-wrapper');
     var card = document.createElement('div');
-    card.classList.add("card, col-4")
+    card.classList.add("card")
     var image = document.createElement('img');
     image.classList.add("card-img-top");
     image.src = json._embedded.events[i].images[0].url;
@@ -83,7 +83,7 @@ function showEvents(json) {
   });
   console.log(json);
   for (var i = 0; i < json.page.size; i++) {
-    var cardDeck = document.querySelector('.card-columns');
+    var cardDeck = document.querySelector('.scrolling-wrapper');
     var card = document.createElement('div');
     card.classList.add("card")
     var image = document.createElement('img');
