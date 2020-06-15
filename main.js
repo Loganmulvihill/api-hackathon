@@ -46,7 +46,7 @@ function updateSearch(json) {
     return hours + ':' + functionMinutes + " " + amPm;
   }
 
-  for (var i = 0; i < json.page.size; i++) {
+  for (var i = 0; i < json._embedded.events.length; i++) {
     var cardDeck = document.querySelector('.scrolling-wrapper');
     var card = document.createElement('div');
     card.classList.add("card")
@@ -66,7 +66,6 @@ function updateSearch(json) {
     var timeHour = parseInt(eventTime1);
     var year = json._embedded.events[i].dates.start.localDate.slice(0,4);
     var monthAndDate = json._embedded.events[i].dates.start.localDate.slice(5);
-    console.log(typeof(monthAndDate));
     var formattedYear = monthAndDate + '-' + year;
     dateAndTime.textContent = formattedYear + " " + (getFormattedTime(timeHour, eventTime2));
     card.append(image);
@@ -97,11 +96,10 @@ function showEvents(json) {
     var hours = ((hour + 11) % 12) + 1;
     var amPm = hours > 11 ? 'pm' : 'am';
     var functionMinutes = minutes;
-    console.log(hours);
     return hours + ':' + functionMinutes + " " + amPm;
   }
 
-  for (var i = 0; i < json.page.size; i++) {
+  for (var i = 0; i < json._embedded.events.length; i++) {
     var cardDeck = document.querySelector('.scrolling-wrapper');
     var card = document.createElement('div');
     card.classList.add("card")
@@ -121,7 +119,6 @@ function showEvents(json) {
     var timeHour = parseInt(eventTime1);
     var year = json._embedded.events[i].dates.start.localDate.slice(0, 4);
     var monthAndDate = json._embedded.events[i].dates.start.localDate.slice(5);
-    console.log(typeof (monthAndDate));
     var formattedYear = monthAndDate + '-' + year;
     dateAndTime.textContent = formattedYear + " " + (getFormattedTime(timeHour, eventTime2));
     card.append(image);
