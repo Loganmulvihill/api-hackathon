@@ -11,15 +11,8 @@
 }
 
 body {
-  background-color:#7DFFFC;
+  background-color:#ECECEC;
 }
-
-/* .card-columns {
-  height:80vh; */
-  /* width:33%; */
-  /* display:flex;
-  flex-wrap:wrap; */
-/* } */
 
 .map {
   height:667.66px;
@@ -30,37 +23,15 @@ body {
   align-items: center;
 }
 
-/* .searchForm {
-  margin-top:10px;
-} */
-
-/* .card {
-  width:33%;
-} */
-
-/* .scrolling-wrapper {
-  overflow-x: scroll;
-  overflow-y: hidden;
-  white-space: nowrap;
-
-  /* .card {
-    display: inline-block;
-  } */
-/* }
-
-  .card {
-    display: inline-block;
-  } */
-
   .scrolling-wrapper {
       display: flex;
   flex-wrap: nowrap;
   overflow: auto;
   overflow-y: hidden;
-  /* display: flex; */
-  /* flex-wrap: nowrap; */
-  /* overflow: auto;
-  white-space: nowrap; */
+  }
+
+  .brand-green {
+    background-color:#1DB954;
   }
 
  .card {
@@ -70,6 +41,7 @@ body {
 
   .header-direction {
     justify-content: center;
+    flex-wrap: wrap;
   }
 
   .main-content-container {
@@ -79,7 +51,6 @@ body {
   @media screen and (min-width: 375px) {
   .card {
   height:100%;
-  /* width:250px; */
   }
   .card-img-top {
   height:50%;
@@ -89,7 +60,7 @@ body {
     height:300px;
   }
   .map {
-    height:30vh;
+    height:35vh;
   }
 }
 
@@ -100,11 +71,26 @@ body {
   .map {
     height:100%;
   }
-    /* .header-direction {
-    justify-content: space-between;
-  } */
 }
 
+  @media screen and (min-width: 768px) {
+ .main-content-container {
+   flex-direction:column;
+ }
+  .map {
+    height:45vh;
+  }
+    .scrolling-wrapper {
+    height:400px;
+  }
+    .header-direction {
+    justify-content: space-between;
+  }
+    .card-img-top {
+  height:50%;
+  object-fit: contain;
+  }
+}
 
   @media screen and (min-width: 1024px) {
  .main-content-container {
@@ -113,19 +99,27 @@ body {
   .map {
     height:40vh;
   }
-    /* .header-direction {
-    justify-content: space-between;
-  } */
+      .scrolling-wrapper {
+    height:350px;
+  }
+      .card-img-top {
+  height:55%;
+  object-fit: contain;
+  }
 }
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 1025px) {
  .main-content-container {
    flex-direction:column;
  }
   .map {
-    height:40vh;
+    height:45vh;
   }
-    /* .header-direction {
-    justify-content: space-between;
-  } */
+      .scrolling-wrapper {
+    height:500px;
+  }
+      .card-img-top {
+  height:65%;
+  object-fit: contain;
+  }
 }

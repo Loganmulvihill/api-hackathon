@@ -2,7 +2,7 @@ var searchValue = null;
 
 $.ajax({
   type: "GET",
-  url: "https://app.ticketmaster.com/discovery/v2/events.json?dmaId=381&apikey=ULaPAoWQUZyaEgtZCF9E39G7bEf00flf",
+  url: "https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&dmaId=381&apikey=ULaPAoWQUZyaEgtZCF9E39G7bEf00flf",
   async: true,
   dataType: "json",
   success: showEvents,
@@ -11,12 +11,12 @@ $.ajax({
 });
 
 function searchInput() {
-  searchValue = document.getElementById('searchBar').value;
+  searchValue = document.getElementById('selectBar').value;
   return searchValue;
 }
 
 function returnSearch() {
-  searchValue = document.getElementById('searchBar').value;
+  searchValue = document.getElementById('selectBar').value;
   $.ajax({
     type: "GET",
     url: "https://app.ticketmaster.com/discovery/v2/events.json?keyword=" + searchValue + "&dmaId=381&apikey=ULaPAoWQUZyaEgtZCF9E39G7bEf00flf",
