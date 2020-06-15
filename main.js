@@ -39,6 +39,13 @@ function updateSearch(json) {
     center: latlng
   });
 
+  function getFormattedTime(hour, minutes) {
+    var hours = ((hour + 11) % 12) + 1;
+    var amPm = hours > 11 ? 'pm' : 'am';
+    var functionMinutes = minutes;
+    return hours + ':' + functionMinutes + " " + amPm;
+  }
+
   for (var i = 0; i < json.page.size; i++) {
     var cardDeck = document.querySelector('.scrolling-wrapper');
     var card = document.createElement('div');
@@ -47,20 +54,24 @@ function updateSearch(json) {
     image.classList.add("card-img-top");
     image.src = json._embedded.events[i].images[0].url;
     var cardBody = document.createElement('div');
-    cardBody.classList.add('card-body');
+    cardBody.classList.add('card-body', 'd-flex', 'justify-content-center', 'align-items-center', 'flex-column');
     var cardHeader = document.createElement('h5');
     cardHeader.classList.add('card-title');
     cardHeader.textContent = json._embedded.events[i].name;
     var dateAndTime = document.createElement('p');
     dateAndTime.classList.add('card-text');
-    dateAndTime.textContent = json._embedded.events[i].dates.start.localDate + " " + json._embedded.events[i].dates.start.localTime;
-    var timeZone = document.createElement('p');
-    timeZone.classList.add('card-text');
-    timeZone.textContent = "TimeZone: " + json._embedded.events[i].dates.timezone;
+    var eventTime = json._embedded.events[i].dates.start.localTime;
+    var eventTime1 = eventTime.slice(0,2);
+    var eventTime2 = eventTime.slice(3, 5);
+    var timeHour = parseInt(eventTime1);
+    var year = json._embedded.events[i].dates.start.localDate.slice(0,4);
+    var monthAndDate = json._embedded.events[i].dates.start.localDate.slice(5);
+    console.log(typeof(monthAndDate));
+    var formattedYear = monthAndDate + '-' + year;
+    dateAndTime.textContent = formattedYear + " " + (getFormattedTime(timeHour, eventTime2));
     card.append(image);
     cardBody.append(cardHeader);
     cardBody.append(dateAndTime);
-    cardBody.append(timeZone);
     card.append(cardBody);
     cardDeck.append(card);
     var latitude = parseFloat(json._embedded.events[i]._embedded.venues[0].location.latitude);
@@ -81,7 +92,15 @@ function showEvents(json) {
     zoom: 10,
     center: latlng
   });
-  console.log(json);
+
+  function getFormattedTime(hour, minutes) {
+    var hours = ((hour + 11) % 12) + 1;
+    var amPm = hours > 11 ? 'pm' : 'am';
+    var functionMinutes = minutes;
+    console.log(hours);
+    return hours + ':' + functionMinutes + " " + amPm;
+  }
+
   for (var i = 0; i < json.page.size; i++) {
     var cardDeck = document.querySelector('.scrolling-wrapper');
     var card = document.createElement('div');
@@ -90,20 +109,24 @@ function showEvents(json) {
     image.classList.add("card-img-top");
     image.src = json._embedded.events[i].images[0].url;
     var cardBody = document.createElement('div');
-    cardBody.classList.add('card-body');
+    cardBody.classList.add('card-body', 'd-flex', 'justify-content-center', 'align-items-center', 'flex-column');
     var cardHeader = document.createElement('h5');
     cardHeader.classList.add('card-title');
     cardHeader.textContent = json._embedded.events[i].name;
     var dateAndTime = document.createElement('p');
     dateAndTime.classList.add('card-text');
-    dateAndTime.textContent = json._embedded.events[i].dates.start.localDate + " " + json._embedded.events[i].dates.start.localTime;
-    var timeZone = document.createElement('p');
-    timeZone.classList.add('card-text');
-    timeZone.textContent = "TimeZone: " + json._embedded.events[i].dates.timezone;
+    var eventTime = json._embedded.events[i].dates.start.localTime;
+    var eventTime1 = eventTime.slice(0, 2);
+    var eventTime2 = eventTime.slice(3, 5);
+    var timeHour = parseInt(eventTime1);
+    var year = json._embedded.events[i].dates.start.localDate.slice(0, 4);
+    var monthAndDate = json._embedded.events[i].dates.start.localDate.slice(5);
+    console.log(typeof (monthAndDate));
+    var formattedYear = monthAndDate + '-' + year;
+    dateAndTime.textContent = formattedYear + " " + (getFormattedTime(timeHour, eventTime2));
     card.append(image);
     cardBody.append(cardHeader);
     cardBody.append(dateAndTime);
-    cardBody.append(timeZone);
     card.append(cardBody);
     cardDeck.append(card);
     var latitude = parseFloat(json._embedded.events[i]._embedded.venues[0].location.latitude);
