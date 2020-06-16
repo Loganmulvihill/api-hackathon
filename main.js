@@ -126,15 +126,38 @@ function showEvents(json) {
     cardBody.append(dateAndTime);
     card.append(cardBody);
     cardDeck.append(card);
-    var latitude = parseFloat(json._embedded.events[i]._embedded.venues[0].location.latitude);
-    var longitude = parseFloat(json._embedded.events[i]._embedded.venues[0].location.longitude);
-    var latLng2 = { lat: latitude, lng: longitude };
-    var marker = new google.maps.Marker({
-      position: latLng2,
-      title: "Hello World!"
-    });
-    marker.setMap(map);
-    map.setCenter(latLng2);
+    // var latitude = parseFloat(json._embedded.events[i]._embedded.venues[0].location.latitude);
+    // var longitude = parseFloat(json._embedded.events[i]._embedded.venues[0].location.longitude);
+    // var latLng2 = { lat: latitude, lng: longitude };
+    // var latitudeArray = [];
+    // latitudeArray.push(latlng2)
+    for (var i = 0; i < json._embedded.events.length; i++) {
+      var latitude = parseFloat(json._embedded.events[i]._embedded.venues[0].location.latitude);
+      var longitude = parseFloat(json._embedded.events[i]._embedded.venues[0].location.longitude);
+      var latLng2 = { lat: latitude, lng: longitude };
+      var latitudeArray = [];
+      latitudeArray.push(latLng2)
+      // var counter = 0;
+      if(latitudeArray[i] === latLng2) {
+           var currentId = document.getElementById('event'+ toString(i));
+        currentId + " ," + json._embedded.events[i].name;
+      } else {
+        var marker = new google.maps.Marker({
+          position: latLng2,
+          title: json._embedded.events[i].name
+        });
+        marker.setMap(map);
+        marker.id = "event" + toString(i)
+        map.setCenter(latLng2);
+      }
+    }
+    // var marker = new google.maps.Marker({
+    //   position: latLng2,
+    //   title: json._embedded.events[i].name
+    // });
+    // marker.setMap(map);
+    // marker.id = "event" + toString(counter)
+    // map.setCenter(latLng2);
   }
 
 }

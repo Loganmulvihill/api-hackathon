@@ -6,7 +6,7 @@
 A desktop application for users who want to find events in San Diego.
 
 ## Live Demo
-Coming Soon!
+https://https://eventster-api-hackathon.loganmulvihill.com/
 
 ## Technologies Used
  - HTML
