@@ -24,20 +24,38 @@ body {
 }
 
   .scrolling-wrapper {
-      display: flex;
+            /* display: flex;
   flex-wrap: nowrap;
   overflow: auto;
-  overflow-y: hidden;
+ overflow-y: hidden; */
+overflow-y: hidden;
   }
+
+        /* display: flex;
+  flex-wrap: nowrap;
+  overflow: auto;
+ overflow-y: hidden; */
 
   .brand-green {
     background-color:#1DB954;
   }
 
+  .carousel-container {
+    height:285.06px;
+  }
+
+  .carousel-card {
+    height:285.06px;
+  }
+
  .card {
     flex: 0 0 auto;
-    width:100%;
+    height:300px;
   }
+
+  /* .carousel-inner img {
+    height:40%;
+  } */
 
   .header-direction {
     justify-content: center;
@@ -48,20 +66,35 @@ body {
     flex-direction: column;
   }
 
+ /* .intro-image {
+     height:30%;
+  object-fit: contain;
+ } */
+
   @media screen and (min-width: 375px) {
-  .card {
+  /* .card {
   height:100%;
-  }
+  } */
   .card-img-top {
-  height:50%;
+  height:30%;
   object-fit: contain;
   }
-  .scrolling-wrapper {
+
+  .carousel-inner {
     height:300px;
   }
   .map {
     height:35vh;
   }
+
+    .intro-image {
+    object-fit: contain;
+    height:45%
+  }
+    /* .carousel-inner img {
+    max-height:38%;
+  } */
+
 }
 
   @media screen and (min-width: 667px) {
@@ -69,7 +102,7 @@ body {
    flex-direction:row;
  }
   .map {
-    height:100%;
+    height:300px;
   }
 }
 
@@ -80,15 +113,30 @@ body {
   .map {
     height:45vh;
   }
-    .scrolling-wrapper {
+    /* .scrolling-wrapper {
     height:400px;
-  }
+  } */
     .header-direction {
     justify-content: space-between;
   }
+
     .card-img-top {
+  height:60%;
+  object-fit: contain;
+  }
+    /* .card-img-top {
   height:50%;
   object-fit: contain;
+  } */
+        /* .carousel-inner img {
+    max-height:%;
+  } */
+  /* .card img {
+    max-height:25%
+  } */
+  .intro-image {
+    object-fit: contain;
+    height:60%
   }
 }
 
@@ -99,9 +147,9 @@ body {
   .map {
     height:40vh;
   }
-      .scrolling-wrapper {
+      /* .scrolling-wrapper {
     height:350px;
-  }
+  } */
       .card-img-top {
   height:55%;
   object-fit: contain;
@@ -115,11 +163,20 @@ body {
   .map {
     height:45vh;
   }
-      .scrolling-wrapper {
+      /* .scrolling-wrapper {
     height:500px;
-  }
+  } */
       .card-img-top {
   height:65%;
   object-fit: contain;
   }
 }
+
+  /* .carousel-inner img {
+    width: 100%;
+    height: 100%;
+  } */
+
+  .background-white {
+    background-color:white;
+  }
