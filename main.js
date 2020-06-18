@@ -104,8 +104,12 @@ function updateSearch(json) {
     dateAndTime.textContent = formattedYear + " " + (getFormattedTime(timeHour, eventTime2));
     var eventInfo = document.createElement('a');
     eventInfo.classList.add('card-text');
+    eventInfo.classList.add('text-primary');
     eventInfo.textContent = 'Event Info';
-    eventInfo.setAttribute("href", json._embedded.events[i].url)
+    let url = json._embedded.events[i].url;
+    eventInfo.onclick =  function() {
+      window.open(url)
+    }
     card.append(image);
     cardBody.append(cardHeader);
     cardBody.append(dateAndTime);
@@ -120,7 +124,6 @@ function updateSearch(json) {
   });
 }
 
-
 function showEvents(json) {
   var markers =[];
   var infoArray = [];
@@ -131,24 +134,19 @@ function showEvents(json) {
   });
 
   function initMap() {
-
     var contentString = "<div>" + "<p>" + json._embedded.events[i].name + "</p>" + "</div>"
-
     var infoWindow = new google.maps.InfoWindow({
       content: contentString
     });
     infoArray.push(infoWindow);
-
     var latitude = parseFloat(json._embedded.events[i]._embedded.venues[0].location.latitude);
     var longitude = parseFloat(json._embedded.events[i]._embedded.venues[0].location.longitude);
     var latLng2 = { lat: latitude, lng: longitude };
-
     var marker = new google.maps.Marker({
       position: latLng2,
       map: map,
       title: json._embedded.events[i].name
     });
-
     markers.push(marker);
     marker.setMap(map);
     marker.addListener('click', function () {
@@ -184,12 +182,14 @@ function showEvents(json) {
     cardHeader.textContent = json._embedded.events[i].name;
     var dateAndTime = document.createElement('p');
     dateAndTime.classList.add('card-text');
-
     var eventInfo = document.createElement('a');
     eventInfo.classList.add('card-text');
+    eventInfo.classList.add('text-primary');
     eventInfo.textContent = 'Event Info';
-    eventInfo.setAttribute("href", json._embedded.events[i].url)
-
+    let url = json._embedded.events[i].url;
+    eventInfo.onclick = function () {
+      window.open(url)
+    }
     var eventTime = json._embedded.events[i].dates.start.localTime;
     var eventTime1 = eventTime.slice(0, 2);
     var eventTime2 = eventTime.slice(3, 5);
