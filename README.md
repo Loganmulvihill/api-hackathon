@@ -26,4 +26,4 @@ https://https://eventster-api-hackathon.loganmulvihill.com/
 3. Map is created containing latitude/longitude markers using Google Maps Javascript API.
 
 ## Preview
- <img src="/assets/images/eventster-example.gif">
+ <img src="/assets/images/eventster-new-example.gif">
