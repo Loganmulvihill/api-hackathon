@@ -33,11 +33,42 @@ function returnSearch() {
 function updateSearch(json) {
   var cardDeck = document.querySelector('.carousel-inner');
   cardDeck.innerHTML = "";
-  var latlng = { lat: 33.6846, lng: -117.8265 };
+  var markers = [];
+  var infoArray = [];
+  var latlng = { lat: 32.7549, lng: -117.1104 };
   var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 10,
+    zoom: 8,
     center: latlng
   });
+
+  function initMap() {
+
+    var contentString = "<div>" + "<p>" + json._embedded.events[i].name + "</p>" + "</div>"
+
+    var infoWindow = new google.maps.InfoWindow({
+      content: contentString
+    });
+    infoArray.push(infoWindow);
+
+    var latitude = parseFloat(json._embedded.events[i]._embedded.venues[0].location.latitude);
+    var longitude = parseFloat(json._embedded.events[i]._embedded.venues[0].location.longitude);
+    var latLng2 = { lat: latitude, lng: longitude };
+
+    var marker = new google.maps.Marker({
+      position: latLng2,
+      map: map,
+      title: json._embedded.events[i].name
+    });
+
+    markers.push(marker);
+    marker.setMap(map);
+    marker.addListener('click', function () {
+      infoWindow.open(map, marker);
+      marker.setVisible(false);
+      setTimeout(function () { marker.setVisible(true) }, 10000);
+      setTimeout(function () { infoWindow.close() }, 3000);
+    });
+  }
 
   function getFormattedTime(hour, minutes) {
     var hours = ((hour + 11) % 12) + 1;
@@ -82,20 +113,13 @@ function updateSearch(json) {
     card.append(cardBody);
     carouselItem.append(card)
     cardDeck.append(carouselItem);
-    var latitude = parseFloat(json._embedded.events[i]._embedded.venues[0].location.latitude);
-    var longitude = parseFloat(json._embedded.events[i]._embedded.venues[0].location.longitude);
-    var latlng2 = { lat: latitude, lng: longitude };
-    var marker = new google.maps.Marker({
-      position: latlng2,
-      title: "Hello World!"
-    });
-    marker.setMap(map);
-    map.setCenter(latlng2);
+    initMap();
   }
   $(document).ready(function () {
     $(".carousel-item:first-child").addClass("active");
   });
 }
+
 
 function showEvents(json) {
   var markers =[];
@@ -106,18 +130,8 @@ function showEvents(json) {
     center: latlng
   });
 
-  console.log(json);
-
   function initMap() {
-    // var latlng = { lat: 33.6846, lng: -117.8265 };
-    // var map = new google.maps.Map(document.getElementById('map'), {
-    //   zoom: 10,
-    //   center: latlng
-    // });
-    // var map = new google.maps.Map(document.getElementById('map'), {
-    //   zoom: 4,
-    //   center: uluru
-    // });
+
     var contentString = "<div>" + "<p>" + json._embedded.events[i].name + "</p>" + "</div>"
 
     var infoWindow = new google.maps.InfoWindow({
@@ -137,26 +151,12 @@ function showEvents(json) {
 
     markers.push(marker);
     marker.setMap(map);
-    // infoWindow.open(map, marker);
     marker.addListener('click', function () {
-
-      // if(marker.setVisible(false)){
-      //   marker.setVisbile(true)
-      // }
-      // infoArray[i].content = "<div>"+"<p>"+ json._embedded.events[i].name+"</p>"+"</div>";
-      // infoArray[i].close();
-      // infoArray[i].open(map, marker)
-      // marker.setVisible(false);
-      // infoWindow.close();
       infoWindow.open(map, marker);
       marker.setVisible(false);
-      // if (marker.setVisible(false)) {
-      //   marker.setVisbile(true)
-      // }
-        //  infoWindow.close();
+      setTimeout(function () {marker.setVisible(true)}, 10000);
+      setTimeout(function () { infoWindow.close()}, 3000);
     });
-    // console.log(markers);
-    // console.log(infoArray);
   }
 
   function getFormattedTime(hour, minutes) {
