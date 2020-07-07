@@ -33,8 +33,6 @@ function returnSearch() {
 function updateSearch(json) {
   var cardDeck = document.querySelector('.carousel-inner');
   cardDeck.innerHTML = "";
-  var markers = [];
-  var infoArray = [];
   var latlng = { lat: 32.7549, lng: -117.1104 };
   var map = new google.maps.Map(document.getElementById('map'), {
     zoom: 8,
@@ -42,33 +40,36 @@ function updateSearch(json) {
   });
 
   function initMap() {
-
-    var contentString = "<div>" + "<p>" + json._embedded.events[i].name + "</p>" + "</div>"
-
-    var infoWindow = new google.maps.InfoWindow({
-      content: contentString
+    var iw = new google.maps.InfoWindow();
+    var oms = new OverlappingMarkerSpiderfier(map, {
+      markersWontMove: true,
+      markersWontHide: true,
+      basicFormatEvents: true
     });
-    infoArray.push(infoWindow);
-
-    var latitude = parseFloat(json._embedded.events[i]._embedded.venues[0].location.latitude);
-    var longitude = parseFloat(json._embedded.events[i]._embedded.venues[0].location.longitude);
-    var latLng2 = { lat: latitude, lng: longitude };
-
-    var marker = new google.maps.Marker({
-      position: latLng2,
-      map: map,
-      title: json._embedded.events[i].name
-    });
-
-    markers.push(marker);
-    marker.setMap(map);
-    marker.addListener('click', function () {
-      infoWindow.open(map, marker);
-      marker.setVisible(false);
-      setTimeout(function () { marker.setVisible(true) }, 10000);
-      setTimeout(function () { infoWindow.close() }, 3000);
-    });
+    for (var i = 0, len = json._embedded.events.length; i < len; i++) {
+      (function () {  // make a closure over the marker and marker data
+        var latitude = parseFloat(json._embedded.events[i]._embedded.venues[0].location.latitude);
+        var longitude = parseFloat(json._embedded.events[i]._embedded.venues[0].location.longitude);
+        var latLng2 = { lat: latitude, lng: longitude, text: json._embedded.events[i].name };
+        // var markerData = window.mapData[i];  // e.g. { lat: 50.123, lng: 0.123, text: 'XYZ' }
+        var marker = new google.maps.Marker({ position: latLng2 });  // markerData works here as a LatLngLiteral
+        google.maps.event.addListener(marker, 'spider_click', function (e) {  // 'spider_click', not plain 'click'
+          // iw.setContent(latLng2.text);
+          iw.open(map, marker);
+        });
+        marker.addListener("mouseover", function () {
+          iw.setContent(latLng2.text);
+          iw.open(map, marker);
+        });
+        marker.addListener("mouseout", function () {
+          iw.close();
+        });
+        oms.addMarker(marker);  // adds the marker to the spiderfier _and_ the map
+      })();
+    }
   }
+
+  initMap();
 
   function getFormattedTime(hour, minutes) {
     var hours = ((hour + 11) % 12) + 1;
@@ -117,7 +118,6 @@ function updateSearch(json) {
     card.append(cardBody);
     carouselItem.append(card)
     cardDeck.append(carouselItem);
-    initMap();
   }
   $(document).ready(function () {
     $(".carousel-item:first-child").addClass("active");
@@ -125,37 +125,43 @@ function updateSearch(json) {
 }
 
 function showEvents(json) {
-  var markers =[];
-  var infoArray = [];
-  var latlng = { lat: 32.7549, lng: -117.1104 };
-  var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 8,
-    center: latlng
-  });
 
   function initMap() {
-    var contentString = "<div>" + "<p>" + json._embedded.events[i].name + "</p>" + "</div>"
-    var infoWindow = new google.maps.InfoWindow({
-      content: contentString
+
+    var latlng = { lat: 32.7549, lng: -117.1104 };
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 8,
+      center: latlng
     });
-    infoArray.push(infoWindow);
-    var latitude = parseFloat(json._embedded.events[i]._embedded.venues[0].location.latitude);
-    var longitude = parseFloat(json._embedded.events[i]._embedded.venues[0].location.longitude);
-    var latLng2 = { lat: latitude, lng: longitude };
-    var marker = new google.maps.Marker({
-      position: latLng2,
-      map: map,
-      title: json._embedded.events[i].name
+
+    var iw = new google.maps.InfoWindow();
+    var oms = new OverlappingMarkerSpiderfier(map, {
+      markersWontMove: true,
+      markersWontHide: true,
+      basicFormatEvents: true
     });
-    markers.push(marker);
-    marker.setMap(map);
-    marker.addListener('click', function () {
-      infoWindow.open(map, marker);
-      marker.setVisible(false);
-      setTimeout(function () {marker.setVisible(true)}, 10000);
-      setTimeout(function () { infoWindow.close()}, 3000);
-    });
+
+    for (var i = 0, len = json._embedded.events.length; i < len; i++) {
+      (function () {  // make a closure over the marker and marker data
+        var latitude = parseFloat(json._embedded.events[i]._embedded.venues[0].location.latitude);
+        var longitude = parseFloat(json._embedded.events[i]._embedded.venues[0].location.longitude);
+        var latLng2 = { lat: latitude, lng: longitude, text: json._embedded.events[i].name };
+        var marker = new google.maps.Marker({ position:latLng2 });  // markerData works here as a LatLngLiteral
+        google.maps.event.addListener(marker, 'spider_click', function (e) {  // 'spider_click', not plain 'click'
+          iw.open(map, marker);
+        });
+        marker.addListener("mouseover", function () {
+          iw.setContent(latLng2.text);
+          iw.open(map, marker);
+        });
+        marker.addListener("mouseout", function () {
+          iw.close();
+        });
+        oms.addMarker(marker);  // adds the marker to the spiderfier _and_ the map
+      })();
+    }
   }
+  initMap();
 
   function getFormattedTime(hour, minutes) {
     var hours = ((hour + 11) % 12) + 1;
@@ -205,7 +211,6 @@ function showEvents(json) {
     card.append(cardBody);
     carouselItem.append(card)
     cardDeck.append(carouselItem);
-    initMap();
   }
 
 }
