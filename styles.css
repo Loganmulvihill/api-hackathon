@@ -24,17 +24,8 @@ body {
 }
 
   .scrolling-wrapper {
-            /* display: flex;
-  flex-wrap: nowrap;
-  overflow: auto;
- overflow-y: hidden; */
 overflow-y: hidden;
   }
-
-        /* display: flex;
-  flex-wrap: nowrap;
-  overflow: auto;
- overflow-y: hidden; */
 
   .brand-green {
     background-color:#1DB954;
@@ -53,10 +44,6 @@ overflow-y: hidden;
     height:300px;
   }
 
-  /* .carousel-inner img {
-    height:40%;
-  } */
-
   .header-direction {
     justify-content: center;
     flex-wrap: wrap;
@@ -66,15 +53,8 @@ overflow-y: hidden;
     flex-direction: column;
   }
 
- /* .intro-image {
-     height:30%;
-  object-fit: contain;
- } */
-
   @media screen and (min-width: 375px) {
-  /* .card {
-  height:100%;
-  } */
+
   .card-img-top {
   height:30%;
   object-fit: contain;
@@ -91,9 +71,6 @@ overflow-y: hidden;
     object-fit: contain;
     height:45%
   }
-    /* .carousel-inner img {
-    max-height:38%;
-  } */
 
 }
 
@@ -113,9 +90,6 @@ overflow-y: hidden;
   .map {
     height:45vh;
   }
-    /* .scrolling-wrapper {
-    height:400px;
-  } */
     .header-direction {
     justify-content: space-between;
   }
@@ -124,16 +98,7 @@ overflow-y: hidden;
   height:60%;
   object-fit: contain;
   }
-    /* .card-img-top {
-  height:50%;
-  object-fit: contain;
-  } */
-        /* .carousel-inner img {
-    max-height:%;
-  } */
-  /* .card img {
-    max-height:25%
-  } */
+
   .intro-image {
     object-fit: contain;
     height:60%
@@ -147,9 +112,7 @@ overflow-y: hidden;
   .map {
     height:40vh;
   }
-      /* .scrolling-wrapper {
-    height:350px;
-  } */
+
       .card-img-top {
   height:55%;
   object-fit: contain;
@@ -163,19 +126,12 @@ overflow-y: hidden;
   .map {
     height:45vh;
   }
-      /* .scrolling-wrapper {
-    height:500px;
-  } */
+
       .card-img-top {
   height:65%;
   object-fit: contain;
   }
 }
-
-  /* .carousel-inner img {
-    width: 100%;
-    height: 100%;
-  } */
 
   .background-white {
     background-color:white;
