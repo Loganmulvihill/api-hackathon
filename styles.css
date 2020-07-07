@@ -56,6 +56,9 @@ overflow-y: hidden;
     flex-direction: column;
   }
 
+  .icon-padding {
+padding:0;
+  }
 
   @media screen and (min-width: 375px) {
 
@@ -74,6 +77,10 @@ overflow-y: hidden;
     .intro-image {
     object-fit: contain;
     height:45%
+  }
+
+  .icon-padding {
+  padding:.5rem;
   }
 
 }
@@ -107,6 +114,10 @@ overflow-y: hidden;
     object-fit: contain;
     height:60%
   }
+   .icon-padding {
+  padding:1rem;
+  }
+
 }
 
   @media screen and (min-width: 1024px) {
