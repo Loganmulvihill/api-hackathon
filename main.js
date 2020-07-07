@@ -73,7 +73,7 @@ function updateSearch(json) {
 
   function getFormattedTime(hour, minutes) {
     var hours = ((hour + 11) % 12) + 1;
-    var amPm = hours > 11 ? 'pm' : 'am';
+    var amPm = hour > 11 ? 'pm' : 'am';
     var functionMinutes = minutes;
     return hours + ':' + functionMinutes + " " + amPm;
   }
@@ -171,7 +171,7 @@ function showEvents(json) {
   initMap();
   function getFormattedTime(hour, minutes) {
     var hours = ((hour + 11) % 12) + 1;
-    var amPm = hours > 11 ? 'pm' : 'am';
+    var amPm = hour > 11 ? 'pm' : 'am';
     var functionMinutes = minutes;
     return hours + ':' + functionMinutes + " " + amPm;
   }
