@@ -78,6 +78,23 @@ function updateSearch(json) {
     return hours + ':' + functionMinutes + " " + amPm;
   }
 
+  function checkTime() {
+    var eventTime = json._embedded.events[i].dates.start.localTime;
+    if (eventTime) {
+      var eventTime1 = eventTime.slice(0, 2);
+      var eventTime2 = eventTime.slice(3, 5);
+      var timeHour = parseInt(eventTime1);
+      var year = json._embedded.events[i].dates.start.localDate.slice(0, 4);
+      var monthAndDate = json._embedded.events[i].dates.start.localDate.slice(5);
+      var formattedYear = monthAndDate + '-' + year;
+      dateAndTime.textContent = formattedYear + " " + (getFormattedTime(timeHour, eventTime2));
+    }
+    else if (eventTime1 === undefined) {
+      dateAndTime.textContent = "No Time Available"
+    }
+  }
+
+
   for (var i = 0; i < json._embedded.events.length; i++) {
     var cardDeck = document.querySelector('.carousel-inner');
     var carouselItem = document.createElement('div');
@@ -95,14 +112,6 @@ function updateSearch(json) {
     cardHeader.textContent = json._embedded.events[i].name;
     var dateAndTime = document.createElement('p');
     dateAndTime.classList.add('card-text');
-    var eventTime = json._embedded.events[i].dates.start.localTime;
-    var eventTime1 = eventTime.slice(0,2);
-    var eventTime2 = eventTime.slice(3, 5);
-    var timeHour = parseInt(eventTime1);
-    var year = json._embedded.events[i].dates.start.localDate.slice(0,4);
-    var monthAndDate = json._embedded.events[i].dates.start.localDate.slice(5);
-    var formattedYear = monthAndDate + '-' + year;
-    dateAndTime.textContent = formattedYear + " " + (getFormattedTime(timeHour, eventTime2));
     var eventInfo = document.createElement('a');
     eventInfo.classList.add('card-text');
     eventInfo.classList.add('text-primary');
@@ -111,6 +120,7 @@ function updateSearch(json) {
     eventInfo.onclick =  function() {
       window.open(url)
     }
+    checkTime();
     card.append(image);
     cardBody.append(cardHeader);
     cardBody.append(dateAndTime);
@@ -127,20 +137,17 @@ function updateSearch(json) {
 function showEvents(json) {
 
   function initMap() {
-
     var latlng = { lat: 32.7549, lng: -117.1104 };
     var map = new google.maps.Map(document.getElementById('map'), {
       zoom: 8,
       center: latlng
     });
-
     var iw = new google.maps.InfoWindow();
     var oms = new OverlappingMarkerSpiderfier(map, {
       markersWontMove: true,
       markersWontHide: true,
       basicFormatEvents: true
     });
-
     for (var i = 0, len = json._embedded.events.length; i < len; i++) {
       (function () {  // make a closure over the marker and marker data
         var latitude = parseFloat(json._embedded.events[i]._embedded.venues[0].location.latitude);
@@ -162,12 +169,27 @@ function showEvents(json) {
     }
   }
   initMap();
-
   function getFormattedTime(hour, minutes) {
     var hours = ((hour + 11) % 12) + 1;
     var amPm = hours > 11 ? 'pm' : 'am';
     var functionMinutes = minutes;
     return hours + ':' + functionMinutes + " " + amPm;
+  }
+
+  function checkTime(){
+    var eventTime = json._embedded.events[i].dates.start.localTime;
+    if (eventTime) {
+      var eventTime1 = eventTime.slice(0, 2);
+      var eventTime2 = eventTime.slice(3, 5);
+      var timeHour = parseInt(eventTime1);
+      var year = json._embedded.events[i].dates.start.localDate.slice(0, 4);
+      var monthAndDate = json._embedded.events[i].dates.start.localDate.slice(5);
+      var formattedYear = monthAndDate + '-' + year;
+      dateAndTime.textContent = formattedYear + " " + (getFormattedTime(timeHour, eventTime2));
+    }
+     else if (eventTime1 === undefined){
+      dateAndTime.textContent = "No Time Available"
+    }
   }
 
   for (var i = 0; i < json._embedded.events.length; i++) {
@@ -196,14 +218,8 @@ function showEvents(json) {
     eventInfo.onclick = function () {
       window.open(url)
     }
-    var eventTime = json._embedded.events[i].dates.start.localTime;
-    var eventTime1 = eventTime.slice(0, 2);
-    var eventTime2 = eventTime.slice(3, 5);
-    var timeHour = parseInt(eventTime1);
-    var year = json._embedded.events[i].dates.start.localDate.slice(0, 4);
-    var monthAndDate = json._embedded.events[i].dates.start.localDate.slice(5);
-    var formattedYear = monthAndDate + '-' + year;
-    dateAndTime.textContent = formattedYear + " " + (getFormattedTime(timeHour, eventTime2));
+
+    checkTime();
     card.append(image);
     cardBody.append(cardHeader);
     cardBody.append(dateAndTime);
