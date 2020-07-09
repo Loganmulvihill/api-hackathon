@@ -109,12 +109,20 @@ function updateSearch(json) {
     cardBody.classList.add('card-body', 'd-flex', 'justify-content-center', 'align-items-center', 'flex-column');
     var cardHeader = document.createElement('h5');
     cardHeader.classList.add('card-title');
+    cardHeader.classList.add('text-center');
+    cardHeader.classList.add('m-0');
     cardHeader.textContent = json._embedded.events[i].name;
+    var venue = document.createElement('p');
+    venue.classList.add('m-0');
+    venue.classList.add('text-center');
+    venue.textContent = json._embedded.events[i]._embedded.venues[0].name;
     var dateAndTime = document.createElement('p');
     dateAndTime.classList.add('card-text');
+    dateAndTime.classList.add('m-0');
     var eventInfo = document.createElement('a');
     eventInfo.classList.add('card-text');
     eventInfo.classList.add('text-primary');
+    eventInfo.classList.add('m-0');
     eventInfo.textContent = 'Event Info';
     let url = json._embedded.events[i].url;
     eventInfo.onclick =  function() {
@@ -123,6 +131,7 @@ function updateSearch(json) {
     checkTime();
     card.append(image);
     cardBody.append(cardHeader);
+    cardBody.append(venue);
     cardBody.append(dateAndTime);
     cardBody.append(eventInfo);
     card.append(cardBody);
@@ -135,6 +144,8 @@ function updateSearch(json) {
 }
 
 function showEvents(json) {
+
+  console.log(json);
 
   function initMap() {
     var latlng = { lat: 32.7549, lng: -117.1104 };
@@ -152,13 +163,14 @@ function showEvents(json) {
       (function () {  // make a closure over the marker and marker data
         var latitude = parseFloat(json._embedded.events[i]._embedded.venues[0].location.latitude);
         var longitude = parseFloat(json._embedded.events[i]._embedded.venues[0].location.longitude);
-        var latLng2 = { lat: latitude, lng: longitude, text: json._embedded.events[i].name };
+        var latLng2 = { lat: latitude, lng: longitude, text: json._embedded.events[i].name, venue: json._embedded.events[i]._embedded.venues[0].name };
         var marker = new google.maps.Marker({ position:latLng2 });  // markerData works here as a LatLngLiteral
         google.maps.event.addListener(marker, 'spider_click', function (e) {  // 'spider_click', not plain 'click'
           iw.open(map, marker);
         });
         marker.addListener("mouseover", function () {
-          iw.setContent(latLng2.text);
+          iw.setContent("<div>" + "<h6>" + latLng2.text + "</h6>" + "</div>" + "<br>" +
+            "<p>" + latLng2.venue + "</p>");
           iw.open(map, marker);
         });
         marker.addListener("mouseout", function () {
@@ -193,6 +205,7 @@ function showEvents(json) {
   }
 
   for (var i = 0; i < json._embedded.events.length; i++) {
+    console.log(json._embedded.events[i]._embedded.venues[0].name);
     var cardDeck = document.querySelector('.carousel-inner');
     var carouselItem = document.createElement('div');
     carouselItem.classList.add("carousel-item");
@@ -207,10 +220,17 @@ function showEvents(json) {
     var cardHeader = document.createElement('h5');
     cardHeader.classList.add('card-title');
     cardHeader.classList.add('text-center');
+    cardHeader.classList.add('m-0');
     cardHeader.textContent = json._embedded.events[i].name;
+    var venue = document.createElement('p');
+    venue.classList.add('m-0');
+    venue.classList.add('text-center');
+    venue.textContent = json._embedded.events[i]._embedded.venues[0].name;
     var dateAndTime = document.createElement('p');
     dateAndTime.classList.add('card-text');
+    dateAndTime.classList.add('m-0');
     var eventInfo = document.createElement('a');
+    eventInfo.classList.add('cursor-pointer');
     eventInfo.classList.add('card-text');
     eventInfo.classList.add('text-primary');
     eventInfo.textContent = 'Event Info';
@@ -222,6 +242,7 @@ function showEvents(json) {
     checkTime();
     card.append(image);
     cardBody.append(cardHeader);
+    cardBody.append(venue);
     cardBody.append(dateAndTime);
     cardBody.append(eventInfo);
     card.append(cardBody);
