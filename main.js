@@ -1,11 +1,14 @@
-var searchValue = null;
 
 $.ajax({
   type: "GET",
   url: "https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&dmaId=381&apikey=ULaPAoWQUZyaEgtZCF9E39G7bEf00flf",
   async: true,
   dataType: "json",
-  success: showEvents,
+  success: function (json) {
+    if (json) {
+      showEvents(json);
+    }
+  },
   error: function (xhr, status, err) {
   }
 });
@@ -44,21 +47,26 @@ function updateSearch(json) {
     var oms = new OverlappingMarkerSpiderfier(map, {
       markersWontMove: true,
       markersWontHide: true,
-      basicFormatEvents: true
+      basicFormatEvents: true,
+      keepSpiderfied:true
     });
     for (var i = 0, len = json._embedded.events.length; i < len; i++) {
       (function () {  // make a closure over the marker and marker data
         var latitude = parseFloat(json._embedded.events[i]._embedded.venues[0].location.latitude);
         var longitude = parseFloat(json._embedded.events[i]._embedded.venues[0].location.longitude);
-        var latLng2 = { lat: latitude, lng: longitude, text: json._embedded.events[i].name };
-        // var markerData = window.mapData[i];  // e.g. { lat: 50.123, lng: 0.123, text: 'XYZ' }
+        var latLng2 = { lat: latitude, lng: longitude, text: json._embedded.events[i].name, venue: json._embedded.events[i]._embedded.venues[0].name };
         var marker = new google.maps.Marker({ position: latLng2 });  // markerData works here as a LatLngLiteral
         google.maps.event.addListener(marker, 'spider_click', function (e) {  // 'spider_click', not plain 'click'
-          // iw.setContent(latLng2.text);
           iw.open(map, marker);
         });
         marker.addListener("mouseover", function () {
-          iw.setContent(latLng2.text);
+          iw.setContent("<div>" + "<h6>" + latLng2.text + "</h6>" + "</div>" + "<br>" +
+            "<p>" + latLng2.venue + "</p>");
+          iw.open(map, marker);
+        });
+        marker.addListener("click", function () {
+          iw.setContent("<div>" + "<h6>" + latLng2.text + "</h6>" + "</div>" + "<br>" +
+            "<p>" + latLng2.venue + "</p>");
           iw.open(map, marker);
         });
         marker.addListener("mouseout", function () {
@@ -93,7 +101,6 @@ function updateSearch(json) {
       dateAndTime.textContent = "No Time Available"
     }
   }
-
 
   for (var i = 0; i < json._embedded.events.length; i++) {
     var cardDeck = document.querySelector('.carousel-inner');
@@ -145,9 +152,9 @@ function updateSearch(json) {
 
 function showEvents(json) {
 
-  console.log(json);
-
   function initMap() {
+
+    if(json){
     var latlng = { lat: 32.7549, lng: -117.1104 };
     var map = new google.maps.Map(document.getElementById('map'), {
       zoom: 8,
@@ -157,7 +164,8 @@ function showEvents(json) {
     var oms = new OverlappingMarkerSpiderfier(map, {
       markersWontMove: true,
       markersWontHide: true,
-      basicFormatEvents: true
+      basicFormatEvents: true,
+      keepSpiderfied:true
     });
     for (var i = 0, len = json._embedded.events.length; i < len; i++) {
       (function () {  // make a closure over the marker and marker data
@@ -173,12 +181,20 @@ function showEvents(json) {
             "<p>" + latLng2.venue + "</p>");
           iw.open(map, marker);
         });
+        marker.addListener("click", function () {
+          iw.setContent("<div>" + "<h6>" + latLng2.text + "</h6>" + "</div>" + "<br>" +
+            "<p>" + latLng2.venue + "</p>");
+          iw.open(map, marker);
+        });
         marker.addListener("mouseout", function () {
           iw.close();
         });
         oms.addMarker(marker);  // adds the marker to the spiderfier _and_ the map
       })();
     }
+  } else {
+    console.log("no data");
+  }
   }
   initMap();
   function getFormattedTime(hour, minutes) {
@@ -205,7 +221,6 @@ function showEvents(json) {
   }
 
   for (var i = 0; i < json._embedded.events.length; i++) {
-    console.log(json._embedded.events[i]._embedded.venues[0].name);
     var cardDeck = document.querySelector('.carousel-inner');
     var carouselItem = document.createElement('div');
     carouselItem.classList.add("carousel-item");
@@ -238,7 +253,6 @@ function showEvents(json) {
     eventInfo.onclick = function () {
       window.open(url)
     }
-
     checkTime();
     card.append(image);
     cardBody.append(cardHeader);
