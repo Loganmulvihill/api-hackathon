@@ -31,6 +31,10 @@ overflow-y: hidden;
     background-color:#1DB954;
   }
 
+  .border-green {
+    border: solid 2px #1DB954;
+  }
+
   .color-green {
     color:#1DB954;
   }
@@ -155,8 +159,6 @@ padding:0;
   .cursor-pointer{
   cursor: pointer;
 }
-
-
 
 .hvr-grow {
   display: inline-block;

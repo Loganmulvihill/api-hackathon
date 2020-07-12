@@ -111,7 +111,12 @@ function updateSearch(json) {
     card.classList.add("card")
     var image = document.createElement('img');
     image.classList.add("card-img-top");
-    image.src = json._embedded.events[i].images[0].url;
+    if (json._embedded.events[i].images[0].width >= json._embedded.events[i].images[1].width) {
+      image.src = json._embedded.events[i].images[0].url;
+    }
+    if (json._embedded.events[i].images[1].width >= json._embedded.events[i].images[0].width) {
+      image.src = json._embedded.events[i].images[1].url;
+    }
     var cardBody = document.createElement('div');
     cardBody.classList.add('card-body', 'd-flex', 'justify-content-center', 'align-items-center', 'flex-column');
     var cardHeader = document.createElement('h5');
@@ -153,7 +158,6 @@ function updateSearch(json) {
 function showEvents(json) {
 
   function initMap() {
-
     if(json){
     var latlng = { lat: 32.7549, lng: -117.1104 };
     var map = new google.maps.Map(document.getElementById('map'), {
@@ -229,7 +233,12 @@ function showEvents(json) {
     card.classList.add("card")
     var image = document.createElement('img');
     image.classList.add("card-img-top");
-    image.src = json._embedded.events[i].images[0].url;
+    if (json._embedded.events[i].images[0].width >= json._embedded.events[i].images[1].width) {
+      image.src = json._embedded.events[i].images[0].url;
+    }
+    if (json._embedded.events[i].images[1].width >= json._embedded.events[i].images[0].width) {
+      image.src = json._embedded.events[i].images[1].url;
+    }
     var cardBody = document.createElement('div');
     cardBody.classList.add('card-body', 'd-flex', 'justify-content-center', 'align-items-center', 'flex-column');
     var cardHeader = document.createElement('h5');
