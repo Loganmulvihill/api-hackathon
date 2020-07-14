@@ -31,9 +31,8 @@ overflow-y: hidden;
     background-color:#5cb85c;
   }
 
-/* #8dc15b */
   .border-green {
-    border: solid 2px #1DB954;
+    border: solid 2px #5cb85c;
   }
 
   .color-green {
@@ -230,7 +229,7 @@ padding:0;
 .hvr-grow:hover, .hvr-grow:focus, .hvr-grow:active {
   -webkit-transform: scale(1.05);
   transform: scale(1.05);
-  border:#1DB954 5px solid;
+  border:#5cb85c 5px solid;
 }
 
 .display-none {
