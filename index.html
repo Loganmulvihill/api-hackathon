@@ -25,7 +25,7 @@
           <h6>Your San Diego Events</h6>
         </div>
       </div>
-      <div class="d-flex justify-content-center align-items-center">
+      <div class="d-flex justify-content-center align-items-center header-controls">
         <div>
           <select name="selectBar" id="selectBar" class="form-control">
             <option value="country">Country</option>
@@ -41,8 +41,13 @@
           </select>
         </div>
         <div>
-          <button id="searchButton" class="btn btn-primary" type="button" onclick="returnSearch()">Pick Genre
+          <button id="searchButton" class="btn btn-primary header-button" type="button" onclick="returnSearch()">Pick Genre
+                        <span class="spinner-border spinner-border-sm display-none" role="status" aria-hidden="true"></span>
           </button>
+          <!-- <button class="btn btn-primary" type="button" disabled>
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            Loading...
+          </button> -->
         </div>
       </div>
     </header>
@@ -81,12 +86,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
   <script src="main.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/OverlappingMarkerSpiderfier/1.0.3/oms.min.js"></script>.
-  <!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap">
-  </script> -->
   <script async defer
-   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCapjt7RzgfQfQy3eR4aDj4HdvZNX7GjZs&callBack=putTogether">
+   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCapjt7RzgfQfQy3eR4aDj4HdvZNX7GjZs">
   </script>
-  <!-- AIzaSyCapjt7RzgfQfQy3eR4aDj4HdvZNX7GjZs -->
 </body>
-
 </html>
