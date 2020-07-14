@@ -5,11 +5,10 @@ $.ajax({
   async: true,
   dataType: "json",
   success: function (json) {
-    if (json) {
       showEvents(json);
-    }
   },
-  error: function (xhr, status, err) {
+  error: function() {
+    openModal()
   }
 });
 
@@ -19,7 +18,6 @@ function searchInput() {
 }
 
 function returnSearch() {
-
   var headerButton = document.querySelector('.header-button');
   headerButton.disabled = true;
   var spinner = document.querySelector('.spinner-border');
@@ -34,19 +32,33 @@ function returnSearch() {
     success: function (json) {
       updateSearch(json);
     },
-    error: console.log("this worked")
+    error: function() {
+      openModal()
+    }
   });
 }
 
-function updateSearch(json) {
+function closeModal(){
+  var modal = document.querySelector('.modal-container');
+  modal.classList.remove("d-flex");
+  modal.classList.remove("display-content");
+  modal.classList.add("display-none");
+}
 
+function openModal(){
+  var modal = document.querySelector('.modal-container');
+  modal.classList.add("d-flex");
+  modal.classList.remove("display-none");
+  modal.classList.add("display-content");
+}
+
+function updateSearch(json) {
   if (json) {
     var headerButton = document.querySelector('.header-button');
     headerButton.disabled = false;
     var spinner = document.querySelector('.spinner-border');
     spinner.classList.add('display-none');
   }
-
   var cardDeck = document.querySelector('.carousel-inner');
   cardDeck.innerHTML = "";
   var latlng = { lat: 32.7549, lng: -117.1104 };

@@ -28,9 +28,10 @@ overflow-y: hidden;
   }
 
   .brand-green {
-    background-color:#8dc15b;
+    background-color:#5cb85c;
   }
 
+/* #8dc15b */
   .border-green {
     border: solid 2px #1DB954;
   }
@@ -64,29 +65,78 @@ overflow-y: hidden;
 padding:0;
   }
 
-  .header-controls {
+  /* .header-controls {
 
-  }
+  } */
+
+  .modal-container{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  position:fixed;
+  height:100vh;
+  width:100vw;
+  z-index:2;
+  background-color: rgba(0, 0, 0, .4);
+/* background-color: white; */
+}
+
+/* Modal Header */
+.modal-header {
+  padding: 2px 16px;
+  background-color: #5cb85c;
+  color: white;
+}
+
+/* Modal Body */
+.modal-body {padding: 2px 16px;}
+
+/* Modal Footer */
+.modal-footer {
+  padding: 2px 16px;
+  background-color: #5cb85c;
+  color: white;
+}
+
+/* Modal Content */
+.modal-content {
+  position: fixed;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0;
+  border: 1px solid #888;
+  width: 90%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  animation-name: animatetop;
+  animation-duration: 0.4s;
+  z-index:2;
+}
+
+/* Add Animation */
+/* @keyframes animatetop {
+  from {top: -50%; opacity: 0}
+  to {top: 0; opacity: 1}
+} */
+
+.text-red {
+  color:red;
+}
 
   @media screen and (min-width: 375px) {
-
   .card-img-top {
   height:30%;
   object-fit: contain;
   }
-
   .carousel-inner {
     height:300px;
   }
   .map {
     height:35vh;
   }
-
     .intro-image {
     object-fit: contain;
     height:45%
   }
-
   .icon-padding {
   padding:.5rem;
   }
@@ -96,28 +146,29 @@ padding:0;
   @media screen and (min-width: 667px) {
  .main-content-container {
    flex-direction:row;
- }
+  }
   .map {
     height:300px;
+  }
+  .modal-content {
+    width:50%;
   }
 }
 
   @media screen and (min-width: 768px) {
  .main-content-container {
    flex-direction:column;
- }
+  }
   .map {
     height:45vh;
   }
     .header-direction {
     justify-content: space-between;
   }
-
     .card-img-top {
   height:60%;
   object-fit: contain;
   }
-
   .intro-image {
     object-fit: contain;
     height:60%
@@ -125,17 +176,18 @@ padding:0;
    .icon-padding {
   padding:1rem;
   }
-
+  .modal-content {
+    width:50%
+  }
 }
 
   @media screen and (min-width: 1024px) {
  .main-content-container {
    flex-direction:column;
- }
+  }
   .map {
     height:40vh;
   }
-
       .card-img-top {
   height:55%;
   object-fit: contain;
@@ -149,16 +201,16 @@ padding:0;
   .map {
     height:45vh;
   }
-
       .card-img-top {
   height:65%;
   object-fit: contain;
   }
+
 }
 
-  .background-white {
-    background-color:white;
-  }
+.background-white {
+  background-color:white;
+}
 
   .cursor-pointer{
   cursor: pointer;
@@ -181,11 +233,10 @@ padding:0;
   border:#1DB954 5px solid;
 }
 
-
 .display-none {
   display:none;
 }
 
-.display-spinner {
+.display-content {
   display:block;
 }

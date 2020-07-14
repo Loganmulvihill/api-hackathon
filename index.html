@@ -14,6 +14,22 @@
 </head>
 
 <body>
+  <div class="modal-container display-none">
+    <div class="modal-content">
+      <div class="modal-header p-3 d-flex justify-content-end">
+        <button id="searchButton" class="btn btn-primary pl-5 pr-5 modal-button" type="button"
+          onclick="closeModal()">Close
+        </button>
+      </div>
+      <div class="modal-body text-center text-red d-flex justify-content-center align-items-center">
+        <h3>Oh no... you broke Eventster, or more likely the network failed, please refresh and try again.</h3>
+      </div>
+      <div class="modal-footer p-3">
+        <!-- <h3>Modal Footer</h3> -->
+      </div>
+    </div>
+  </div>
+
   <div class="container col-12 brand-green pb-1">
     <header class="container d-flex header-direction mb-2">
       <div>
@@ -41,19 +57,15 @@
           </select>
         </div>
         <div>
-          <button id="searchButton" class="btn btn-primary header-button" type="button" onclick="returnSearch()">Pick Genre
-                        <span class="spinner-border spinner-border-sm display-none" role="status" aria-hidden="true"></span>
+          <button id="searchButton" class="btn btn-primary header-button" type="button" onclick="returnSearch()">Pick
+            Genre
+            <span class="spinner-border spinner-border-sm display-none" role="status" aria-hidden="true"></span>
           </button>
-          <!-- <button class="btn btn-primary" type="button" disabled>
-            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-            Loading...
-          </button> -->
         </div>
       </div>
     </header>
   </div>
   <div class="container d-flex main-content-container">
-
     <div class="col-xs-12 col-sm-6 col-md-12 col-lg-12 carousel-container pr-0 pl-0">
       <div id="demo" class="carousel slide" data-interval="false">
         <!-- The slideshow -->
@@ -86,8 +98,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
   <script src="main.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/OverlappingMarkerSpiderfier/1.0.3/oms.min.js"></script>.
-  <script async defer
-   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCapjt7RzgfQfQy3eR4aDj4HdvZNX7GjZs">
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCapjt7RzgfQfQy3eR4aDj4HdvZNX7GjZs">
   </script>
 </body>
+
 </html>
