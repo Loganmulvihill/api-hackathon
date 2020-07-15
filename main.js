@@ -43,6 +43,10 @@ function closeModal(){
   modal.classList.remove("d-flex");
   modal.classList.remove("display-content");
   modal.classList.add("display-none");
+  var headerButton = document.querySelector('.header-button');
+  headerButton.disabled = false;
+  var spinner = document.querySelector('.spinner-border');
+  spinner.classList.add('display-none');
 }
 
 function openModal(){
