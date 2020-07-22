@@ -9,8 +9,8 @@ A desktop application for users who want to find events in San Diego.
 https://https://eventster-api-hackathon.loganmulvihill.com/
 
 ## Technologies Used
- - HTML
- - CSS
+ - HTML5
+ - CSS3
  - JavaScript
  - jQuery
  - ajax
