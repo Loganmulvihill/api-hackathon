@@ -12,7 +12,7 @@ https://https://eventster-api-hackathon.loganmulvihill.com/
  - HTML
  - CSS
  - JavaScript
- - JQuery
+ - jQuery
  - ajax
  - Bootstrap
  - Ticketmaster API
